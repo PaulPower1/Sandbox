@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PaulsHelloWorld.Models
+namespace PaulsSecurity.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
