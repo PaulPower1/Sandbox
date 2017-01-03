@@ -29,5 +29,7 @@ namespace PaulsSecurity.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<PaulsSecurity.Models.Customer> Customers { get; set; }
     }
 }

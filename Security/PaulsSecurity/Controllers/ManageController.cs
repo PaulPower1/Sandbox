@@ -291,7 +291,11 @@ namespace PaulsSecurity.Controllers
             }
             var userLogins = await UserManager.GetLoginsAsync(User.Identity.GetUserId());
             var otherLogins = AuthenticationManager.GetExternalAuthenticationTypes().Where(auth => userLogins.All(ul => auth.AuthenticationType != ul.LoginProvider)).ToList();
+
+            //Based on whether a user is logged in...
             ViewBag.ShowRemoveButton = user.PasswordHash != null || userLogins.Count > 1;
+            ViewBag.ShowHideCustomerButton = ViewBag.ShowRemoveButton;
+
             return View(new ManageLoginsViewModel
             {
                 CurrentLogins = userLogins,
