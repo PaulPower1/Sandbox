@@ -36,8 +36,12 @@ namespace PaulsSecurity.Controllers
         private static List<Customer> GetSearchResults(String customerDetails)
         {
             using (var dbContext = new ApplicationDbContext())
-            { 
+            {
+                //Vulnerable SQL
                 var myList = dbContext.Database.SqlQuery<Customer>("select * from dbo.Customers where lastname = " + customerDetails + " order by lastname").ToList();
+                
+                //To defend against sql injection with use of sqlparams...
+                //var myList = dbContext.Database.SqlQuery<Customer>("select * from dbo.Customers where lastname = @pCustDetails order by lastname", new System.Data.SqlClient.SqlParameter("pCustDetails", customerDetails)).ToList();
                 return myList;
             }
         }
